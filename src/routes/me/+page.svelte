@@ -57,7 +57,7 @@
 	});
 </script>
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center pb-8">
 	<div class="space-y-12 py-8">
 		<div class="border-b border-gray-900/10 pb-12">
 			<h2 class="text-base font-bold leading-7 text-gray-900">Profile</h2>
@@ -315,22 +315,21 @@
 			{#if error}
 				<p class="mt-2 text-sm leading-6 text-red-600">{error}</p>
 			{/if}
-		</div>
-
-		<div class="mt-6 flex items-center justify-end gap-x-6">
-			<button
-				type="button"
-				class="text-sm font-semibold leading-6 text-gray-900"
-				on:click={handleClear}>Clear</button
-			>
-			<button
-				disabled={!isModified()}
-				on:click={handleSubmit}
-				class={`rounded-md text-sm px-3 py-2 font-bold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all ` +
-					(!isModified()
-						? 'cursor-not-allowed text-black'
-						: 'bg-[#FF204E] hover:bg-[#ff2020] text-white')}>Save</button
-			>
+			<div class="flex items-center justify-end gap-x-6 mt-8">
+				<button
+					type="button"
+					class="text-sm font-semibold leading-6 text-gray-900"
+					on:click={handleClear}>Clear</button
+				>
+				<button
+					disabled={!isModified()}
+					on:click={handleSubmit}
+					class={`rounded-md text-sm px-3 py-2 font-bold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all ` +
+						(!isModified()
+							? 'cursor-not-allowed text-black'
+							: 'bg-[#FF204E] hover:bg-[#ff2020] text-white')}>Save</button
+				>
+			</div>
 		</div>
 	</div>
 </div>
