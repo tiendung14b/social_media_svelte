@@ -17,7 +17,7 @@
 	<div class="flex shadow-lg">
 		<Header />
 	</div>
-	<div class="w-full h-full overflow-auto mt-1">
+	<div class="w-full h-full overflow-y-scroll overflow-x-hidden mt-1">
 		<div class="flex w-[1200px] mx-auto">
 			<div class="w-[65%] sm:w-[15vw] hidden fixed z-10 sm:h-auto sm:block">
 				<Sidebar />
