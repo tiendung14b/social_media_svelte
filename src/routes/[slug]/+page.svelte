@@ -19,4 +19,4 @@
 	});
 </script>
 
-<Layout></Layout>
+<Layout noSidebar={true}>asjdflaskdfj</Layout>

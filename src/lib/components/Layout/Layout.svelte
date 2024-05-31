@@ -6,6 +6,8 @@
 	import Sidebar from '$lib/components/Sidebar/Sidebar.svelte';
 	import Header from '../Header/Header.svelte';
 
+	export let noSidebar = false;
+
 	onMount(() => {
 		getCurrentUser().then((res) => {
 			localUser.set(res);
@@ -17,13 +19,15 @@
 	<div class="flex shadow-lg">
 		<Header />
 	</div>
-	<div class="w-full h-full overflow-y-scroll overflow-x-hidden mt-1">
+	<div class="w-full h-full overflow-y-scroll overflow-x-hidden mt-1 px-4">
 		<div class="flex w-[1200px] mx-auto">
-			<div class="w-[65%] sm:w-[15vw] hidden fixed z-10 sm:h-auto sm:block">
-				<Sidebar />
-			</div>
-			<div class="flex w-full pb-8 max-h-[100vh] ml-[15vw]">
-				<div class="max-w-[720px] sm:max-w-[75%] mx-auto">
+			{#if !noSidebar}
+				<div class="w-[65%] sm:w-[15vw] hidden fixed z-10 sm:h-auto sm:block">
+					<Sidebar />
+				</div>
+			{/if}
+			<div class={`flex w-full pb-8 max-h-[100vh] ${!noSidebar && 'ml-[15vw]'}`}>
+				<div class={`${!noSidebar ? 'max-w-[720px] sm:max-w-[75%]' : 'w-full'} mx-auto`}>
 					<slot />
 				</div>
 			</div>
