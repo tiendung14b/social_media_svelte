@@ -14,11 +14,7 @@
 	});
 </script>
 
-<div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
-	<div class="flex gap-4 h-16 shrink-0 items-center">
-		<img class="h-8 w-auto" src="/images/logo.png" alt="Your Company" />
-		<p class="font-bold text-[14px] text-[#FF204E]">meow meow</p>
-	</div>
+<div class="flex grow flex-col gap-y-5 overflow-y-auto border-gray-200 px-6 py-8">
 	<nav class="flex flex-1 flex-col">
 		<ul role="list" class="flex flex-col gap-y-7">
 			<li>
@@ -135,7 +131,7 @@
 									d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"
 								/>
 							</svg>
-							Documents
+							Settings
 						</a>
 					</li>
 					<li>
@@ -167,11 +163,10 @@
 					</li>
 				</ul>
 			</li>
-			<li>
+			<!-- <li>
 				<div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>
 				<ul role="list" class="-mx-2 mt-2 space-y-1">
 					<li>
-						<!-- Current: "bg-gray-50 text-indigo-600", Default: "text-gray-700 hover:text-indigo-600 hover:bg-gray-50" -->
 						<a
 							href="#"
 							class="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
@@ -208,7 +203,7 @@
 						</a>
 					</li>
 				</ul>
-			</li>
+			</li> -->
 			<li class="-mx-6 mt-auto">
 				<a
 					href="#"

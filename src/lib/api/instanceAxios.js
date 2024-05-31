@@ -1,6 +1,6 @@
 import axios from "axios";
 import { localUser } from '$lib/stores/localUser.js'
-import { getUserToken } from '$lib/utils/storeAccount.js';
+import { getUserToken, remove } from '$lib/utils/storeAccount.js';
 import { goto } from "$app/navigation";
 
 const errorCode = {
@@ -57,6 +57,11 @@ instanceAxios.interceptors.response.use(function (response) {
   if (error.response.status === 401) {
     if (data.code === 'INVALID_CREDENTIALS') {
       console.log(errorCode[data.code].msg);
+      return Promise.reject({...res, msg: errorCode[data.code].msg});
+    } else if (data.code === 'TOKEN_EXPIRED') {
+      localUser.set(null);
+      remove();
+      goto('/login');
       return Promise.reject({...res, msg: errorCode[data.code].msg});
     }
   } else if (error.response.status === 403) {

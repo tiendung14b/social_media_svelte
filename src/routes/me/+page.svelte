@@ -1,7 +1,8 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
 	import { localUser } from '$lib/stores/localUser.js';
-	import { getCurrentUser, updateCurrentUser } from '$lib/api/user';
+	import { updateCurrentUser } from '$lib/api/user';
+	import { validateUsername } from '$lib/utils/validate';
 	import Uploadable from '../../lib/components/Uploadable/Uploadable.svelte';
 
 	let user;
@@ -17,7 +18,7 @@
 		last_name: undefined,
 		location: undefined
 	};
-	let uniqueFieldError = '';
+	let error = '';
 
 	// method
 	$: isModified = () => {
@@ -27,11 +28,15 @@
 	};
 
 	const handleSubmit = async () => {
+		if (!validateUsername(modifiedUser.username)) {
+			error = 'Username không hợp lệ';
+			return;
+		}
 		try {
 			await updateCurrentUser(modifiedUser);
 			handleClear();
 		} catch (err) {
-			uniqueFieldError = err.msg;
+			error = err.msg;
 		}
 	};
 
@@ -81,6 +86,9 @@
 								placeholder={user?.username || 'username'}
 							/>
 						</div>
+						<p class="mt-3 text-sm leading-6 text-gray-500 italic">
+							Usename has 3-20 characters, no special characters or spaces.
+						</p>
 					</div>
 				</div>
 
@@ -304,8 +312,8 @@
 				</div>
 			</div>
 			<!-- error -->
-			{#if uniqueFieldError}
-				<p class="mt-2 text-sm leading-6 text-red-600">{uniqueFieldError}</p>
+			{#if error}
+				<p class="mt-2 text-sm leading-6 text-red-600">{error}</p>
 			{/if}
 		</div>
 
