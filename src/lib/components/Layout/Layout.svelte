@@ -19,7 +19,7 @@
 	<div class="flex shadow-lg">
 		<Header />
 	</div>
-	<div class="w-full h-full overflow-y-scroll overflow-x-hidden px-4">
+	<div class="w-full bg-[#f5eded] h-full overflow-y-scroll overflow-x-hidden px-4">
 		<div class="flex max-w-[1200px] mx-auto">
 			{#if !noSidebar}
 				<div class="w-[65%] sm:w-[15vw] hidden fixed z-10 sm:h-auto sm:block">

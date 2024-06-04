@@ -1,4 +1,3 @@
-import {post} from './customFetch.js';
 import { getUserToken } from '$lib/utils/storeAccount.js';
 import { localUser } from '$lib/stores/localUser.js';
 import instanceAxios from './instanceAxios.js';
@@ -23,6 +22,26 @@ const getCurrentUser = async () => {
   }
 }
 
+const getUserById = async (id) => {
+  try {
+    const res = await instanceAxios.get(`users/${id}`)
+    return res
+  }
+  catch (err) {
+    throw err
+  }
+}
+
+const getUserByUsername = async (username) => {
+  try {
+    const res = await instanceAxios.get(`users/?filter={"username":"${username}"}`)
+    return res[0]
+  }
+  catch (err) {
+    throw err
+  }
+}
+
 const updateCurrentUser = async (data) => {
   try {
     if (!getUserToken().access_token) {
@@ -38,5 +57,7 @@ const updateCurrentUser = async (data) => {
 
 export {
   getCurrentUser,
-  updateCurrentUser
+  updateCurrentUser,
+  getUserById,
+  getUserByUsername,
 }

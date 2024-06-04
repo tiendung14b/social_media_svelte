@@ -7,6 +7,7 @@ const validateEmail = (email) => {
 };
 
 const validateUsername = (username) => {
+  if (username === null || username === undefined) return true;
   if (username.length < 3 || username.length > 20) return false;
   let res = true;
   String(username).toLowerCase().split('').forEach((char) => {

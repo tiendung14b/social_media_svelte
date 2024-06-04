@@ -8,7 +8,7 @@
 	import Layout from '$lib/components/Layout/Layout.svelte';
 
 	onMount(() => {
-		if (!user) {
+		if (!localUser) {
 			goto('/login');
 		}
 	});

@@ -15,6 +15,4 @@ import { writable } from "svelte/store";
 //   // };
 // }
 
-export const localUser = writable({
-  access_token: null,
-});
+export const localUser = writable({});

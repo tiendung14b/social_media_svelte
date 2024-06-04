@@ -30,14 +30,14 @@
 		</div>
 		<div class="flex flex-1 items-center justify-end gap-x-6">
 			<a
-				href={'/' + user.username || `/profile?id=${user.id}`}
+				href={user.username !== null ? '/' + user.username : `/profile?id=${user.id}`}
 				class="flex-row items-center justify-evenly rounded-full bg-slate-200 pl-2 pr-4 py-1 gap-4 hidden lg:flex lg:text-sm lg:font-bold lg:leading-6 lg:text-gray-900"
 			>
 				<img src={user.profileImageUrl} alt="" class="object-cover w-7 rounded-full" />
 				<span>Your page</span>
 			</a>
 			<a
-				href="#"
+				href="#!"
 				class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 				>Sign up</a
 			>
