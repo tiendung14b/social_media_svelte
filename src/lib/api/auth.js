@@ -55,15 +55,6 @@ const logout = async () => {
 	const refeshToken = getUserToken().refresh_token
 	remove()
 	localUser.set(null)
-	// const res = await fetch(`http://localhost:8055/auth/logout`, {
-	// 	method: 'POST',
-	// 	headers: {
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	body: JSON.stringify({
-	// 		refresh_token: refeshToken
-	// 	})
-	// })
 	await instanceAxios.post('auth/logout', {
 		refresh_token: refeshToken
 	})

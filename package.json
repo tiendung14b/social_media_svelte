@@ -30,6 +30,7 @@
 		"@cloudinary/url-gen": "^1.19.0",
 		"@directus/sdk": "^15.1.0",
 		"axios": "^1.7.2",
-		"svelte-cloudinary": "^1.3.2"
+		"svelte-cloudinary": "^1.3.2",
+		"swiper": "^11.1.4"
 	}
 }

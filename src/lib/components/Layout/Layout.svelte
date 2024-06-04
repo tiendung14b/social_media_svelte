@@ -8,11 +8,11 @@
 
 	export let noSidebar = false;
 
-	onMount(() => {
-		getCurrentUser().then((res) => {
-			localUser.set(res);
-		});
-	});
+	// onMount(() => {
+	// 	getCurrentUser().then((res) => {
+	// 		localUser.set(res);
+	// 	});
+	// });
 </script>
 
 <div class="flex flex-col w-full overflow-hidden">

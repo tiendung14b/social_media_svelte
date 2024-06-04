@@ -1,7 +1,7 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
 	import { localUser } from '$lib/stores/localUser.js';
-	import { updateCurrentUser } from '$lib/api/user';
+	import { updateCurrentUser, getCurrentUser } from '$lib/api/user';
 	import { validateUsername } from '$lib/utils/validate';
 	import Uploadable from '../../lib/components/Uploadable/Uploadable.svelte';
 
@@ -51,6 +51,12 @@
 			location: undefined
 		};
 	};
+
+	onMount(() => {
+		getCurrentUser().then((res) => {
+			localUser.set(res);
+		});
+	});
 
 	onDestroy(() => {
 		unsub();
@@ -187,13 +193,18 @@
 									/>
 								</svg>
 								<div class="mt-4 flex text-sm leading-6 text-gray-600">
-									<label
-										for="file-upload"
-										class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+									<span
+										class="relative cursor-pointer rounded-md font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
 									>
-										<span>Upload a file</span>
-										<input id="file-upload" name="file-upload" type="file" class="sr-only" />
-									</label>
+										<Uploadable
+											id="coverImage"
+											handleAfterUpload={(url) => {
+												console.log('coverImageUrl');
+												updateCurrentUser({ coverImageUrl: url });
+											}}
+											>Upload a file
+										</Uploadable>
+									</span>
 									<p class="pl-1">or drag and drop</p>
 								</div>
 								<p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { logout } from '$lib/api/auth.js';
 	import { localUser } from '$lib/stores/localUser.js';
+	import { getUserToken } from '$lib/utils/storeAccount.js';
 	import { goto } from '$app/navigation';
 	import { onDestroy } from 'svelte';
 	import '../app.css';
@@ -13,7 +14,7 @@
 	});
 
 	onMount(() => {
-		if (!user) {
+		if (!getUserToken()) {
 			goto('/login');
 		}
 	});
