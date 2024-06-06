@@ -8,6 +8,9 @@
 	import ProfileImageSection from './ProfileImageSection.svelte';
 	import Posts from './Posts.svelte';
 	import Photos from './Photos.svelte';
+	import About from './About.svelte';
+	import Followers from './Followers.svelte';
+	import Following from './Following.svelte';
 
 	let user = {};
 	let local_user = {};
@@ -134,7 +137,13 @@
 			}}
 			{getImages}
 		/>
+	{:else if currPage === 2}
+		<About {user} />
 	{:else if currPage === 3}
 		<Photos {user} {getImages} />
+	{:else if currPage === 4}
+		<Followers {user} />
+	{:else if currPage === 5}
+		<Following {user} />
 	{/if}
 </div>

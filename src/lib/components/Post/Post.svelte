@@ -13,7 +13,7 @@
 	let { author, text, date_created, date_updated, id, images } = post;
 </script>
 
-<div class="flex flex-col gap-4 w-[96%] bg-white py-4 px-4 shadow-lg rounded-lg">
+<div class="flex flex-col relative gap-4 w-[96%] bg-white py-4 px-4 shadow-lg rounded-lg">
 	<div class="flex items-center gap-4">
 		<a href="/{author.username !== null ? author.username : `profile?id=${author.id}`}"
 			><img src={author.profileImageUrl} alt="" class="w-12 h-12 rounded-full object-cover" /></a
