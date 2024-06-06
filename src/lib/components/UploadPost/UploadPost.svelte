@@ -4,7 +4,9 @@
 	import { createPost } from '$lib/api/post.js';
 
 	export let onClose = () => {};
+	export let onSubmit = () => {};
 	let content = '';
+	$: if (content.length > 356) content = content.slice(0, 356);
 	let inputImages = null;
 	let imageUrls = [];
 	let uploading = false;
@@ -52,7 +54,8 @@
 			const uploads = await Promise.all(imageUrls.map((img) => uploadImage(img)));
 			data.images = JSON.stringify(uploads);
 			await createPost(data);
-			onClose();
+			await onSubmit();
+			window.location.reload();
 		} catch (err) {
 			console.log(err);
 		}
@@ -63,16 +66,16 @@
 	class="absolute top-1/2 -translate-y-[45%] left-1/2 -translate-x-1/2 z-10 w-[45vw] max-w-[540px] px-4 py-6 rounded-lg bg-white shadow-lg"
 >
 	<div class="flex justify-between">
-		<img src={$localUser.profileImageUrl} alt="" class="size-12 rounded-full" />
+		<img src={$localUser.profileImageUrl} alt="" class="size-12 rounded-full object-cover" />
 		<span on:click={onClose} class="cursor-pointer">cancel</span>
 	</div>
 	<textarea
-		rows="10"
+		rows="6"
 		placeholder="Yapping as u want"
 		bind:value={content}
 		name=""
 		id=""
-		class={`w-full mt-4 outline-none resize-none text-[${textSize}px]`}
+		class={`w-full text-justify mt-4 outline-none resize-none text-[${textSize}px]`}
 	></textarea>
 	<p class="text-right mt-2">{content.length}/356</p>
 	<p class="mt-4">{`Add ${imageUrls.length}/4 images`}</p>

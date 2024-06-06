@@ -12,9 +12,24 @@ const createPost = async (data) => {
   }
 }
 
-const getPostByAuthor = async (author) => {
+const getAllPosts = async () => {
   try {
-    const res = await instanceAxios.get(`${baseUrl}/filter?author=${author}`)
+    const res = await instanceAxios.get(baseUrl)
+    return res
+  } catch (err) {
+    throw err
+  }
+}
+
+const getPostsByAuthor = async (author) => {
+  try {
+    let res = await instanceAxios.get(`${baseUrl}?fields=*.*&filter={"author": "${author}"}&sort=-date_created`)
+    res = res.map(post => {
+      return {
+        ...post,
+        images: JSON.parse(post.images)
+      }
+    })
     return res
   } catch (err) {
     throw err
@@ -23,5 +38,6 @@ const getPostByAuthor = async (author) => {
 
 export {
   createPost,
-  getPostByAuthor
+  getPostsByAuthor,
+  getAllPosts
 }

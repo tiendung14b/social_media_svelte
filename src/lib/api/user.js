@@ -24,7 +24,7 @@ const getCurrentUser = async () => {
 
 const getUserById = async (id) => {
   try {
-    const res = await instanceAxios.get(`users/${id}`)
+    const res = await instanceAxios.get(`users/${id}?fields=*.*`)
     return res
   }
   catch (err) {
@@ -34,7 +34,7 @@ const getUserById = async (id) => {
 
 const getUserByUsername = async (username) => {
   try {
-    const res = await instanceAxios.get(`users/?filter={"username":"${username}"}`)
+    const res = await instanceAxios.get(`users/?fields=*.*&filter={"username":"${username}"}`)
     return res[0]
   }
   catch (err) {

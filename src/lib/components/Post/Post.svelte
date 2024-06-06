@@ -10,36 +10,28 @@
 	register();
 	export let post;
 
-	let { author, content, data_created, date_updated, id, images } = {
-		author: {
-			avatar: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png',
-			name: 'John Doe'
-		},
-		content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam',
-		data_created: '2021-10-10',
-		date_updated: '2021-10-10',
-		id: 1,
-		images: [
-			'https://media.myshows.me/shows/1920/1/91/191f7ccd81934473deececa3ea60b7ef.jpg',
-			'https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/447216802_762015789470541_5723035503364349941_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFoWovkbd0HI9Fc6xf0PDF3JaOE7AIckqMlo4TsAhySo-oIU33Y6URl7I5PpdhC880Wew9h--UoSUtk40q3XzIf&_nc_ohc=OcvmoayejsYQ7kNvgFvLcd1&_nc_ht=scontent.fhan2-5.fna&oh=00_AYBR0UGCa86em6cROjKjjyxko8iUCR2AbUi5KvlJ8FYPXg&oe=66645BA2'
-		]
-	};
+	let { author, text, date_created, date_updated, id, images } = post;
 </script>
 
-<div class="flex flex-col gap-4 w-[95%] bg-white py-4 px-4 shadow-lg rounded-lg">
+<div class="flex flex-col gap-4 w-[96%] bg-white py-4 px-4 shadow-lg rounded-lg">
 	<div class="flex items-center gap-4">
-		<img src={author.avatar} alt="" class="w-12 h-12 rounded-full" />
+		<a href="/{author.username !== null ? author.username : `profile?id=${author.id}`}"
+			><img src={author.profileImageUrl} alt="" class="w-12 h-12 rounded-full object-cover" /></a
+		>
 		<div>
-			<p class="font-bold">{author.name}</p>
+			<a href="/{author.username}" class="font-bold">{author.first_name + ' ' + author.last_name}</a
+			>
 			<div class="flex gap-2">
-				<p class="text-gray-500 text-sm">{data_created}</p>
+				<p class="text-gray-500 text-sm">{date_created}</p>
 				{#if date_updated !== null && date_updated !== undefined}
 					<p class="text-gray-500 text-sm">{`(edited at: ${date_updated})`}</p>
 				{/if}
 			</div>
 		</div>
 	</div>
-	<p>{content}</p>
+	{#if text !== ''}
+		<p class="">{text}</p>
+	{/if}
 	<swiper-container class="flex gap-4 w-full">
 		{#each images as image}
 			<swiper-slide
