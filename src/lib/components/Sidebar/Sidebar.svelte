@@ -1,9 +1,8 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
 	import { localUser } from '$lib/stores/localUser.js';
-	import { getCurrentUser } from '$lib/api/user.js';
-
-	export let currPage = 1;
+	import { logout } from '$lib/api/auth.js';
+	export let currPage = 'news';
 	let user = null;
 	const unsub = localUser.subscribe((value) => {
 		user = value;
@@ -23,10 +22,10 @@
 						<!-- Current: "bg-gray-50 text-[#FF204E]", Default: "text-gray-700 hover:text-[#FF204E] hover:bg-gray-50" -->
 						<a
 							href="/"
-							class="bg-gray-50 text-[#FF204E] group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+							class={`${currPage === 'news' ? 'bg-gray-50 text-[#FF204E]' : 'text-gray-700 hover:text-[#FF204E] hover:bg-gray-50'} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold`}
 						>
 							<svg
-								class="h-6 w-6 shrink-0 text-[#FF204E]"
+								class={`h-6 w-6 shrink-0 ${currPage === 'news' ? 'text-[#FF204E]' : 'text-gray-400 group-hover:text-[#FF204E]'}`}
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke-width="1.5"
@@ -49,10 +48,10 @@
 					<li>
 						<a
 							href="#"
-							class="text-gray-700 hover:text-[#FF204E] hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+							class={`${currPage === 'follower' ? 'bg-gray-50 text-[#FF204E]' : 'text-gray-700 hover:text-[#FF204E] hover:bg-gray-50'} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold`}
 						>
 							<svg
-								class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-[#FF204E]"
+								class={`h-6 w-6 shrink-0 ${currPage === 'follower' ? 'text-[#FF204E]' : 'text-gray-400 group-hover:text-[#FF204E]'}`}
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke-width="1.5"
@@ -71,10 +70,10 @@
 					<li>
 						<a
 							href="#"
-							class="text-gray-700 hover:text-[#FF204E] hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+							class={`${currPage === 'following' ? 'bg-gray-50 text-[#FF204E]' : 'text-gray-700 hover:text-[#FF204E] hover:bg-gray-50'} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold`}
 						>
 							<svg
-								class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-[#FF204E]"
+								class={`h-6 w-6 shrink-0 ${currPage === 'following' ? 'text-[#FF204E]' : 'text-gray-400 group-hover:text-[#FF204E]'}`}
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke-width="1.5"
@@ -93,10 +92,10 @@
 					<li>
 						<a
 							href="#"
-							class="text-gray-700 hover:text-[#FF204E] hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+							class={`${currPage === 'saving_post' ? 'bg-gray-50 text-[#FF204E]' : 'text-gray-700 hover:text-[#FF204E] hover:bg-gray-50'} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold`}
 						>
 							<svg
-								class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-[#FF204E]"
+								class={`h-6 w-6 shrink-0 ${currPage === 'saving_post' ? 'text-[#FF204E]' : 'text-gray-400 group-hover:text-[#FF204E]'}`}
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke-width="1.5"
@@ -115,10 +114,10 @@
 					<li>
 						<a
 							href="/me"
-							class="text-gray-700 hover:text-[#FF204E] hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+							class={`${currPage === 'account' ? 'bg-gray-50 text-[#FF204E]' : 'text-gray-700 hover:text-[#FF204E] hover:bg-gray-50'} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold`}
 						>
 							<svg
-								class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-[#FF204E]"
+								class={`h-6 w-6 shrink-0 ${currPage === 'account' ? 'text-[#FF204E]' : 'text-gray-400 group-hover:text-[#FF204E]'}`}
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke-width="1.5"
@@ -137,10 +136,10 @@
 					<li>
 						<a
 							href="#"
-							class="text-gray-700 hover:text-[#FF204E] hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+							class={`${currPage === 'reports' ? 'bg-gray-50 text-[#FF204E]' : 'text-gray-700 hover:text-[#FF204E] hover:bg-gray-50'} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold`}
 						>
 							<svg
-								class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-[#FF204E]"
+								class={`h-6 w-6 shrink-0 ${currPage === 'reports' ? 'text-[#FF204E]' : 'text-gray-400 group-hover:text-[#FF204E]'}`}
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke-width="1.5"
@@ -206,7 +205,7 @@
 			</li> -->
 			<li class="-mx-6 mt-auto">
 				<a
-					href="#"
+					href={`/profile?id=${user?.id}`}
 					class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
 				>
 					<img
@@ -218,6 +217,16 @@
 					<span aria-hidden="true">{`${user?.first_name + ' ' + user?.last_name}`}</span>
 				</a>
 			</li>
+			<button
+				on:click={async () => {
+					await logout();
+				}}
+			>
+				<li class="-mx-6 mt-auto flex items-center pl-5 gap-2">
+					<img src="/images/log-out.svg" alt="asldkjflasdfjk" />
+					<strong>Log out</strong>
+				</li>
+			</button>
 		</ul>
 	</nav>
 </div>

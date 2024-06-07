@@ -55,6 +55,15 @@ const updateCurrentUser = async (data) => {
   }
 }
 
+const setPostPrivacy = async (id, data) => {
+  try {
+    const res = await instanceAxios.patch(`users/${id}`, data)
+    return res
+  } catch (err) {
+    throw err
+  }
+}
+
 export {
   getCurrentUser,
   updateCurrentUser,

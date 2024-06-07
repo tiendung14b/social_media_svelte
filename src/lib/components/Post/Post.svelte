@@ -41,12 +41,12 @@
 	</swiper-container>
 	<hr />
 	<div class="flex gap-4 relative">
-		<img src={local_user.profileImageUrl} alt="" class="size-10 rounded-full object-cover" />
+		<img src={local_user?.profileImageUrl} alt="" class="size-10 rounded-full object-cover" />
 		<input
 			bind:value={cmtNotEmpty}
 			class="flex-grow pl-4 pr-20 outline-none focus:border-none bg-slate-200 rounded-full"
 			type="text"
-			placeholder={`Comment as ${local_user.first_name + ' ' + local_user.last_name}`}
+			placeholder={`Comment as ${local_user?.first_name + ' ' + local_user?.last_name}`}
 		/>
 		{#if cmtNotEmpty !== ''}
 			<p class="absolute right-7 top-1/2 -translate-y-1/2">Send</p>

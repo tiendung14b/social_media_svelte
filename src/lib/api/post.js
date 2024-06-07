@@ -12,10 +12,16 @@ const createPost = async (data) => {
   }
 }
 
-const getAllPosts = async () => {
+const getAllPosts = async (limit = 10, offset = 0) => {
+  const options = `?limit=${limit}&offset=${offset}&fields=*.*&sort=-date_created`
   try {
-    const res = await instanceAxios.get(baseUrl)
-    return res
+    const res = await instanceAxios.get(baseUrl + options)
+    return res.map(post => {
+      return {
+        ...post,
+        images: JSON.parse(post.images)
+      }
+    })
   } catch (err) {
     throw err
   }
@@ -35,6 +41,7 @@ const getPostsByAuthor = async (author) => {
     throw err
   }
 }
+
 
 export {
   createPost,

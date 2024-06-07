@@ -1,29 +1,21 @@
 <script>
 	import '../../../app.css';
-	import { onMount } from 'svelte';
-	import { getCurrentUser } from '$lib/api/user';
-	import { localUser } from '$lib/stores/localUser.js';
 	import Sidebar from '$lib/components/Sidebar/Sidebar.svelte';
 	import Header from '../Header/Header.svelte';
 
 	export let noSidebar = false;
-
-	// onMount(() => {
-	// 	getCurrentUser().then((res) => {
-	// 		localUser.set(res);
-	// 	});
-	// });
+	export let currPage = '';
 </script>
 
 <div class="flex flex-col w-full overflow-hidden">
 	<div class="flex shadow-lg">
 		<Header />
 	</div>
-	<div class="w-full bg-[#f5eded] h-full overflow-y-scroll overflow-x-hidden px-4">
+	<div class="w-full bg-[#f5eded] overflow-y-scroll overflow-x-hidden px-4">
 		<div class="flex max-w-[1200px] mx-auto">
 			{#if !noSidebar}
-				<div class="w-[65%] sm:w-[15vw] hidden fixed z-10 sm:h-auto sm:block">
-					<Sidebar />
+				<div class="w-[65%] sm:w-[16vw] hidden fixed z-10 sm:h-auto sm:block">
+					<Sidebar {currPage} />
 				</div>
 			{/if}
 			<div class={`flex w-full pb-8 max-h-[100vh] ${!noSidebar && 'ml-[15vw]'}`}>

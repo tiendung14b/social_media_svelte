@@ -57,6 +57,8 @@ const logout = async () => {
 	localUser.set(null)
 	await instanceAxios.post('auth/logout', {
 		refresh_token: refeshToken
+	}, {
+		noRequiredAuth: true
 	})
 	goto('/login')
 }

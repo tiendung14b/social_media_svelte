@@ -52,7 +52,9 @@ instanceAxios.interceptors.request.use(function (req) {
 instanceAxios.interceptors.response.use(function (response) {
   return response.data.data || response.data;
 }, function (error) {
-  const data = error.response.data.errors[0].extensions;
+  console.error(error.response);
+  const data = error.response?.data.errors[0].extensions;
+  if (!data) return Promise.reject(error);
   const res = { error: true, code: data.code }
   if (error.response.status === 401) {
     if (data.code === 'INVALID_CREDENTIALS') {

@@ -292,7 +292,7 @@
 			</div>
 
 			<div class="border-b border-gray-900/10 pb-12">
-				<h2 class="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
+				<h2 class="text-base font-semibold leading-7 text-gray-900">Settings</h2>
 				<p class="mt-1 text-sm leading-6 text-gray-600">
 					We'll always let you know about important changes, but you pick what else you want to hear
 					about.
@@ -300,7 +300,7 @@
 
 				<div class="mt-10 space-y-10">
 					<fieldset>
-						<legend class="text-sm font-semibold leading-6 text-gray-900">By Email</legend>
+						<legend class="text-sm font-semibold leading-6 text-gray-900">Privacy Settings</legend>
 						<div class="mt-6 space-y-6">
 							<div class="relative flex gap-x-3">
 								<div class="flex h-6 items-center">
@@ -312,9 +312,9 @@
 									/>
 								</div>
 								<div class="text-sm leading-6">
-									<label for="comments" class="font-medium text-gray-900">Comments</label>
+									<label for="comments" class="font-medium text-gray-900">Public your post</label>
 									<p class="text-gray-500">
-										Get notified when someones posts a comment on a posting.
+										Everone can see your post, even if they are not your followers.
 									</p>
 								</div>
 							</div>

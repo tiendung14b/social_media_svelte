@@ -37,11 +37,7 @@
 					<img src={user.profileImageUrl} alt="" class="object-cover size-7 rounded-full" />
 					<span>Your page</span>
 				</a>
-				<a
-					href="#!"
-					class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-					>Sign up</a
-				>
+				<img src="/images/notification.png" alt="" class="size-6" />
 			</div>
 			<div class="flex lg:hidden">
 				<button
