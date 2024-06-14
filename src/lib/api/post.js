@@ -13,7 +13,22 @@ const createPost = async (data) => {
 }
 
 const getAllPosts = async (limit = 10, offset = 0) => {
-  const options = `?limit=${limit}&offset=${offset}&fields=*.*&sort=-date_created`
+  const options = `?limit=${limit}&offset=${offset}&fields=*.*.*&sort=-date_created`
+  try {
+    const res = await instanceAxios.get(baseUrl + options)
+    return res.map(post => {
+      return {
+        ...post,
+        images: JSON.parse(post.images)
+      }
+    })
+  } catch (err) {
+    throw err
+  }
+}
+
+const getNewestPosts = async (limit = 1) => {
+  const options = `?limit=${limit}&fields=*.*.*&sort=-date_created`
   try {
     const res = await instanceAxios.get(baseUrl + options)
     return res.map(post => {
@@ -29,7 +44,9 @@ const getAllPosts = async (limit = 10, offset = 0) => {
 
 const getPostsByAuthor = async (author) => {
   try {
-    let res = await instanceAxios.get(`${baseUrl}?fields=*.*&filter={"author": "${author}"}&sort=-date_created`)
+    const fields = '*,author.*,comments.author.id, comments.author.first_name, comments.author.last_name, comments.author.profileImageUrl,comments.text'
+    let res = await instanceAxios.get(`${baseUrl}?fields=*.*.*&filter={"author": "${author}"}&sort=-date_created`)
+    // let res = await instanceAxios.get(`${baseUrl}?fields[]=${fields}&sort=-date_created`)
     res = res.map(post => {
       return {
         ...post,

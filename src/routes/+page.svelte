@@ -12,6 +12,8 @@
 	import { getCurrentUser } from '$lib/api/user.js';
 
 	let posts = [];
+	let scrollY = 0;
+	let isAllPostsLoaded = false;
 
 	onMount(() => {
 		if (!getUserToken()) {
@@ -30,7 +32,23 @@
 	});
 </script>
 
-<Layout currPage="news">
+<Layout
+	currPage="news"
+	onLastPage={() => {
+		if (isAllPostsLoaded) return;
+		getAllPosts(10, posts.length)
+			.then((res) => {
+				if (res.length === 0) {
+					isAllPostsLoaded = true;
+					return;
+				}
+				posts = [...posts, ...res];
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}}
+>
 	<div class="col-span-6 flex flex-col gap-3 items-end pt-8 pb-24">
 		{#each posts as post}
 			<Post {post} />

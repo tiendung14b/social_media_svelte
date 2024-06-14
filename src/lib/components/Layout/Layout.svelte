@@ -5,13 +5,24 @@
 
 	export let noSidebar = false;
 	export let currPage = '';
+	export let onLastPage = () => {};
+
+	let box;
 </script>
 
 <div class="flex flex-col w-full overflow-hidden">
 	<div class="flex shadow-lg">
 		<Header />
 	</div>
-	<div class="w-full bg-[#f5eded] overflow-y-scroll overflow-x-hidden px-4">
+	<div
+		bind:this={box}
+		on:scroll={() => {
+			if (box.scrollHeight - box.clientHeight - box.scrollTop < 1) {
+				onLastPage();
+			}
+		}}
+		class="w-full bg-[#f5eded] overflow-y-scroll overflow-x-hidden px-4"
+	>
 		<div class="flex max-w-[1200px] mx-auto">
 			{#if !noSidebar}
 				<div class="w-[65%] sm:w-[16vw] hidden fixed z-10 sm:h-auto sm:block">

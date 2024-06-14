@@ -1,6 +1,7 @@
 <script>
 	import { localUser } from '$lib/stores/localUser.js';
 	import { onDestroy } from 'svelte';
+	import Notification from '../Notification/Notification.svelte';
 
 	let user = {};
 	const unsub = localUser.subscribe((value) => {
@@ -37,7 +38,7 @@
 					<img src={user.profileImageUrl} alt="" class="object-cover size-7 rounded-full" />
 					<span>Your page</span>
 				</a>
-				<img src="/images/notification.png" alt="" class="size-6" />
+				<Notification />
 			</div>
 			<div class="flex lg:hidden">
 				<button

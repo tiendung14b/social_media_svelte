@@ -62,6 +62,8 @@
 	};
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	class="absolute top-1/2 -translate-y-[45%] left-1/2 -translate-x-1/2 z-10 w-[45vw] max-w-[540px] px-4 py-6 rounded-lg bg-white shadow-lg"
 >

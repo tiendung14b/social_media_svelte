@@ -17,7 +17,7 @@
 	// });
 
 	onMount(() => {
-		if (getUserToken()) {
+		if (getUserToken()?.current) {
 			goto('/me');
 		}
 	});

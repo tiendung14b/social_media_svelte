@@ -17,6 +17,7 @@
 		first_name: undefined,
 		last_name: undefined,
 		location: undefined
+		// public: user?.public
 	};
 	let error = '';
 
@@ -49,6 +50,7 @@
 			first_name: undefined,
 			last_name: undefined,
 			location: undefined
+			// public: user?.public
 		};
 	};
 
@@ -308,6 +310,9 @@
 										id="comments"
 										name="comments"
 										type="checkbox"
+										on:change={() => {
+											// modifiedUser.public = !modifiedUser.public;
+										}}
 										class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
 									/>
 								</div>
