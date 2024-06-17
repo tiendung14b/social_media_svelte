@@ -28,7 +28,7 @@ const errorCode = {
 }
 
 const instanceAxios = axios.create({
-  baseURL: "http://localhost:8055/",
+  baseURL: "https://training01.appdemo.dev/",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",

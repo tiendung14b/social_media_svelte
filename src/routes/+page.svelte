@@ -36,7 +36,7 @@
 	currPage="news"
 	onLastPage={() => {
 		if (isAllPostsLoaded) return;
-		getAllPosts(10, posts.length)
+		getAllPosts(5, posts.length)
 			.then((res) => {
 				if (res.length === 0) {
 					isAllPostsLoaded = true;
@@ -53,5 +53,14 @@
 		{#each posts as post}
 			<Post {post} />
 		{/each}
+		<div class="bg-slate-300 rounded-md w-[96%] p-2 text-center">
+			<p class="font-bold">
+				{#if isAllPostsLoaded}
+					{`Hết post òi. Đi kiếm thêm bạn đi ạ :))`}
+				{:else}
+					{`Đợi xíu load thêm post...`}
+				{/if}
+			</p>
+		</div>
 	</div>
 </Layout>

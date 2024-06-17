@@ -20,13 +20,15 @@
 			aria-label="Global"
 		>
 			<div class="flex lg:flex-1">
-				<div class="flex gap-4 h-16 shrink-0 items-center">
-					<img class="h-8 w-auto" src="/images/logo.png" alt="Your Company" />
-					<p class="font-bold text-[14px] text-[#FF204E]">meow meow</p>
-				</div>
+				<a href="/">
+					<div class="flex gap-4 h-16 shrink-0 items-center">
+						<img class="h-8 w-auto" src="/images/logo.png" alt="Your Company" />
+						<p class="font-bold text-[14px] text-[#FF204E]">meow meow</p>
+					</div>
+				</a>
 			</div>
 			<div class="hidden lg:flex lg:gap-x-12">
-				<a href="#" class="text-sm font-semibold leading-6 text-gray-900">Trang chủ</a>
+				<a href="/" class="text-sm font-semibold leading-6 text-gray-900">Trang chủ</a>
 				<a href="#" class="text-sm font-semibold leading-6 text-gray-900">Following</a>
 				<a href="#" class="text-sm font-semibold leading-6 text-gray-900">Explore</a>
 			</div>

@@ -18,7 +18,7 @@
 
 	onMount(() => {
 		if (getUserToken()?.current) {
-			goto('/me');
+			goto('/');
 		}
 	});
 
@@ -30,7 +30,7 @@
 			if (!validateEmail(email)) return (error = 'Email không hợp lệ');
 			const res = await login({ email, password });
 			// redirect to home page
-			goto('/me');
+			goto('/');
 		} catch (err) {
 			error = err.msg;
 			isSubmitting = false;

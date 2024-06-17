@@ -45,8 +45,8 @@ const getNewestPosts = async (limit = 1) => {
 const getPostsByAuthor = async (author) => {
   try {
     const fields = '*,author.*,comments.author.id, comments.author.first_name, comments.author.last_name, comments.author.profileImageUrl,comments.text'
-    let res = await instanceAxios.get(`${baseUrl}?fields=*.*.*&filter={"author": "${author}"}&sort=-date_created`)
-    // let res = await instanceAxios.get(`${baseUrl}?fields[]=${fields}&sort=-date_created`)
+    // let res = await instanceAxios.get(`${baseUrl}?fields=*.*.*&filter={"author": "${author}"}&sort=-date_created`)
+    let res = await instanceAxios.get(`${baseUrl}?fields[]=${fields}&filter={"author": "${author}"}&sort=-date_created`)
     res = res.map(post => {
       return {
         ...post,
