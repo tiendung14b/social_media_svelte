@@ -14,13 +14,15 @@
 	let posts = [];
 	let scrollY = 0;
 	let isAllPostsLoaded = false;
+	let isRendered = false;
 
 	onMount(() => {
 		if (!getUserToken()) {
-			goto('/login');
+			return goto('/login');
 		}
 		getCurrentUser().then((res) => {
 			localUser.set(res);
+			isRendered = true;
 		});
 		getAllPosts()
 			.then((res) => {
@@ -32,35 +34,37 @@
 	});
 </script>
 
-<Layout
-	currPage="news"
-	onLastPage={() => {
-		if (isAllPostsLoaded) return;
-		getAllPosts(5, posts.length)
-			.then((res) => {
-				if (res.length === 0) {
-					isAllPostsLoaded = true;
-					return;
-				}
-				posts = [...posts, ...res];
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}}
->
-	<div class="col-span-6 flex flex-col gap-3 items-end pt-8 pb-24">
-		{#each posts as post}
-			<Post {post} />
-		{/each}
-		<div class="bg-slate-300 rounded-md w-[96%] p-2 text-center">
-			<p class="font-bold">
-				{#if isAllPostsLoaded}
-					{`Hết post òi. Đi kiếm thêm bạn đi ạ :))`}
-				{:else}
-					{`Đợi xíu load thêm post...`}
-				{/if}
-			</p>
+{#if isRendered}
+	<Layout
+		currPage="news"
+		onLastPage={() => {
+			if (isAllPostsLoaded) return;
+			getAllPosts(5, posts.length)
+				.then((res) => {
+					if (res.length === 0) {
+						isAllPostsLoaded = true;
+						return;
+					}
+					posts = [...posts, ...res];
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}}
+	>
+		<div class="col-span-6 flex flex-col gap-3 items-end pt-8 pb-24">
+			{#each posts as post}
+				<Post {post} />
+			{/each}
+			<div class="bg-slate-300 rounded-md w-[96%] p-2 text-center">
+				<p class="font-bold">
+					{#if isAllPostsLoaded}
+						{`Hết post òi. Đi kiếm thêm bạn đi ạ :))`}
+					{:else}
+						{`Đợi xíu load thêm post...`}
+					{/if}
+				</p>
+			</div>
 		</div>
-	</div>
-</Layout>
+	</Layout>
+{/if}
