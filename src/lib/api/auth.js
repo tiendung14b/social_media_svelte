@@ -11,6 +11,9 @@ const errorCode = {
 	}
 }
 
+const DEV = false;
+let baseURL = DEV ? 'http://localhost:8055' : 'https://training01.appdemo.dev';
+
 const login = async ({ email, password }) => {
 	try {
 		const res = await instanceAxios.post('auth/login', {
@@ -31,7 +34,7 @@ const refreshToken = async () => {
 	if (!getUserToken()) {
 		goto('/login')
 	}
-	const res = await fetch(`http://localhost:8055/auth/refresh`, {
+	const res = await fetch(`${baseURL}/auth/refresh`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -55,7 +58,7 @@ const logout = async () => {
 	const refeshToken = getUserToken().refresh_token
 	remove()
 	localUser.set(null)
-	await instanceAxios.post('auth/logout', {
+	await instanceAxios.post(`${baseURL}/auth/logout`, {
 		refresh_token: refeshToken
 	}, {
 		noRequiredAuth: true
@@ -63,15 +66,14 @@ const logout = async () => {
 	goto('/login')
 }
 
-const signup = async ({ email, password }) => {
-	const res = await fetch(`http://localhost:8055/users`, {
+const signup = async (data) => {
+	const res = await fetch(`${baseURL}/users`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			email,
-			password,
+			...data,
 			role: '090af77a-6b12-484e-b755-71f8f71a1390'
 		})
 	})

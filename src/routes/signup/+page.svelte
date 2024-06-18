@@ -4,6 +4,8 @@
 	import { signup } from '$lib/api/auth.js';
 	import { save } from '$lib/utils/storeAccount.js';
 
+	let first_name = '';
+	let last_name = '';
 	let email = '';
 	let password = '';
 	let repassword = '';
@@ -12,7 +14,7 @@
 
 	const handleSubmit = async () => {
 		isSubmitting = true;
-		if (!email || !password || !repassword) {
+		if (!email || !password || !repassword || !first_name || !last_name) {
 			error = 'Vui lòng điền đầy đủ thông tin';
 			isSubmitting = false;
 			return;
@@ -22,7 +24,7 @@
 			isSubmitting = false;
 			return;
 		}
-		const res = await signup({ email, password });
+		const res = await signup({ email, password, first_name, last_name });
 		if (res.error) {
 			error = res.msg;
 			isSubmitting = false;
@@ -48,6 +50,39 @@
 			<div class="mt-10">
 				<div>
 					<div action="#" method="POST" class="space-y-6">
+						<div class="grid grid-cols-2 gap-5">
+							<div>
+								<label for="email" class="block text-sm font-bold leading-6 text-gray-900"
+									>First name</label
+								>
+								<div class="mt-2">
+									<input
+										id="first_name"
+										name="first_name"
+										type="text"
+										bind:value={first_name}
+										required
+										class="block w-full font-bold rounded-md border-0 py-1.5 px-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+									/>
+								</div>
+							</div>
+							<div>
+								<label for="email" class="block text-sm font-bold leading-6 text-gray-900"
+									>Last Name</label
+								>
+								<div class="mt-2">
+									<input
+										id="last_name"
+										name="last_name"
+										type="text"
+										bind:value={last_name}
+										required
+										class="block w-full font-bold rounded-md border-0 py-1.5 px-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+									/>
+								</div>
+							</div>
+						</div>
+
 						<div>
 							<label for="email" class="block text-sm font-bold leading-6 text-gray-900"
 								>Địa chỉ Email</label

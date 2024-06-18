@@ -30,7 +30,7 @@
 			<div class="hidden lg:flex lg:gap-x-12">
 				<a href="/" class="text-sm font-semibold leading-6 text-gray-900">Trang chủ</a>
 				<a href="#" class="text-sm font-semibold leading-6 text-gray-900">Following</a>
-				<a href="#" class="text-sm font-semibold leading-6 text-gray-900">Explore</a>
+				<a href="/explore" class="text-sm font-semibold leading-6 text-gray-900">Explore</a>
 			</div>
 			<div class="flex flex-1 items-center justify-end gap-x-6">
 				<a
