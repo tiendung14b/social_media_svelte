@@ -5,7 +5,7 @@
 	import { validateUsername } from '$lib/utils/validate';
 	import Uploadable from '../../lib/components/Uploadable/Uploadable.svelte';
 
-	let user;
+	let user = {};
 	const unsub = localUser.subscribe((value) => {
 		user = value;
 	});
@@ -16,16 +16,21 @@
 		coverImageUrl: undefined,
 		first_name: undefined,
 		last_name: undefined,
-		location: undefined
-		// public: user?.public
+		location: undefined,
+		public: undefined
 	};
 	let error = '';
 
 	// method
 	$: isModified = () => {
-		return Object.keys(modifiedUser).some(
-			(key) => modifiedUser[key] !== undefined && modifiedUser[key] !== ''
-		);
+		return Object.keys(modifiedUser).some((key) => {
+			if (!user) return;
+			return (
+				modifiedUser[key] !== undefined &&
+				modifiedUser[key] !== '' &&
+				modifiedUser[key] !== user[key]
+			);
+		});
 	};
 
 	const handleSubmit = async () => {
@@ -49,14 +54,15 @@
 			coverImageUrl: undefined,
 			first_name: undefined,
 			last_name: undefined,
-			location: undefined
-			// public: user?.public
+			location: undefined,
+			public: user?.public
 		};
 	};
 
 	onMount(() => {
 		getCurrentUser().then((res) => {
 			localUser.set(res);
+			modifiedUser.public = res.public;
 		});
 	});
 
@@ -310,9 +316,7 @@
 										id="comments"
 										name="comments"
 										type="checkbox"
-										on:change={() => {
-											// modifiedUser.public = !modifiedUser.public;
-										}}
+										bind:checked={modifiedUser.public}
 										class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
 									/>
 								</div>

@@ -3,6 +3,8 @@ import { localUser } from '$lib/stores/localUser.js'
 import { getUserToken, remove } from '$lib/utils/storeAccount.js';
 import { goto } from "$app/navigation";
 
+const DEV = true;
+
 const errorCode = {
   TOKEN_EXPIRED: {
     code: 'TOKEN_EXPIRED',
@@ -28,7 +30,7 @@ const errorCode = {
 }
 
 const instanceAxios = axios.create({
-  baseURL: "https://training01.appdemo.dev/",
+  baseURL: DEV ? 'http://localhost:8055' : 'https://training01.appdemo.dev/',
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",

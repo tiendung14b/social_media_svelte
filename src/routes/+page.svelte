@@ -39,7 +39,7 @@
 		currPage="news"
 		onLastPage={() => {
 			if (isAllPostsLoaded) return;
-			getAllPosts(5, posts.length)
+			getAllPosts(10, posts.length)
 				.then((res) => {
 					if (res.length === 0) {
 						isAllPostsLoaded = true;
@@ -52,7 +52,7 @@
 				});
 		}}
 	>
-		<div class="col-span-6 flex flex-col gap-3 items-end pt-8 pb-24">
+		<div class="col-span-6 flex flex-col gap-3 items-end pt-8 pb-24 w-full">
 			{#each posts as post}
 				<Post {post} />
 			{/each}

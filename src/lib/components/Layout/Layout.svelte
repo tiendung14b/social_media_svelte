@@ -30,7 +30,7 @@
 				</div>
 			{/if}
 			<div class={`flex w-full pb-8 max-h-[100vh] ${!noSidebar && 'ml-[15vw]'}`}>
-				<div class={`${!noSidebar ? 'max-w-[720px] sm:max-w-[75%]' : 'w-full'} mx-auto`}>
+				<div class={`${!noSidebar ? 'w-[720px] sm:max-w-[75%]' : 'w-full'} mx-auto`}>
 					<slot />
 				</div>
 			</div>
