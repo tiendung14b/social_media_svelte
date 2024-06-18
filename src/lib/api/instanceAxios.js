@@ -3,7 +3,7 @@ import { localUser } from '$lib/stores/localUser.js'
 import { getUserToken, remove } from '$lib/utils/storeAccount.js';
 import { goto } from "$app/navigation";
 
-const DEV = true;
+const DEV = false;
 
 const errorCode = {
   TOKEN_EXPIRED: {
