@@ -43,6 +43,59 @@ const getNewestPosts = async (limit = 1) => {
 }
 
 const getPostsByAuthor = async (author) => {
+  const query = `
+    query {
+      posts(
+        filter: {
+          author: {
+            id: {
+              _eq: "${author}"
+            }
+          }
+        }
+        sort: ["sort", "-date_created"]
+      ){
+        id
+        text
+        date_created
+        date_updated
+        images
+        author {
+          id
+          first_name
+          last_name
+          profileImageUrl
+        }
+        comments {
+          id
+          text
+          author {
+            id
+            first_name
+            last_name
+            profileImageUrl
+          }
+        }
+      }
+    }
+  `
+  try {
+    let res = await instanceAxios.post('graphql', { query })
+    let data = res.posts;
+    data = data.map(post => {
+      return {
+        ...post,
+        images: JSON.parse(post.images)
+      }
+    })
+    return data
+  } catch (err) {
+    throw err
+  }
+}
+
+
+const getPostsByAuthorT = async (author) => {
   try {
     const fields = '*,author.*,comments.author.id, comments.author.first_name, comments.author.last_name, comments.author.profileImageUrl,comments.text'
     // let res = await instanceAxios.get(`${baseUrl}?fields=*.*.*&filter={"author": "${author}"}&sort=-date_created`)
@@ -63,5 +116,5 @@ const getPostsByAuthor = async (author) => {
 export {
   createPost,
   getPostsByAuthor,
-  getAllPosts
+  getAllPosts,
 }

@@ -5,7 +5,7 @@
 </script>
 
 <div>
-	<div class="flex items-start gap-4">
+	<div class="flex items-start gap-4 transition-all duration-500">
 		<a href="/{`profile?id=${author.id}`}"
 			><img src={author.profileImageUrl} alt="" class="size-10 rounded-full object-cover" /></a
 		>

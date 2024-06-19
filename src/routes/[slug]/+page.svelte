@@ -29,6 +29,7 @@
 
 	const getImages = () => {
 		let images = [];
+		if (!posts || posts.length === 0) return [];
 		posts.forEach((post) => {
 			images.push(...post.images);
 		});

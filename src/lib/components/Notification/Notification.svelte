@@ -9,7 +9,7 @@
 	let limit = 5;
 
 	onMount(() => {
-		const url = 'ws://localhost:8055/websocket';
+		const url = 'https://training01.appdemo.dev/websocket';
 		const accessToken = getUserToken().access_token;
 		const collection = 'directus_notifications';
 		const connection = new WebSocket(url);

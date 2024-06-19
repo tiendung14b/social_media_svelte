@@ -44,9 +44,9 @@ const getUserByUsername = async (username) => {
 
 const updateCurrentUser = async (data) => {
   try {
-    if (!getUserToken().access_token) {
-      return goto('/login')
-    }
+    // if (!getUserToken().access_token) {
+    //   return goto('/login')
+    // }
     const res = await instanceAxios.patch('users/me', data)
     localUser.set(res)
     return res
