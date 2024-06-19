@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { signup } from '$lib/api/auth.js';
 	import { save } from '$lib/utils/storeAccount.js';
+	import '../../app.css';
 
 	let first_name = '';
 	let last_name = '';
@@ -11,9 +12,11 @@
 	let repassword = '';
 	let isSubmitting = false;
 	let error = null;
+	let mounted = false;
 
 	const handleSubmit = async () => {
 		isSubmitting = true;
+
 		if (!email || !password || !repassword || !first_name || !last_name) {
 			error = 'Vui lòng điền đầy đủ thông tin';
 			isSubmitting = false;
@@ -147,7 +150,7 @@
 								>
 							</div>
 						</div>
-
+						<div class="g-recaptcha" data-sitekey="6LcWSvwpAAAAAFXUHMj88N3sn9E75Nnnb1s1rejt"></div>
 						<div>
 							<button
 								on:click={handleSubmit}
@@ -174,6 +177,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="relative hidden w-0 flex-1 lg:block">
 		<img
 			class="absolute inset-0 h-full w-full object-cover"
