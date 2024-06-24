@@ -15,8 +15,11 @@
 	let mounted = false;
 
 	const handleSubmit = async () => {
+		if (grecaptcha.getResponse().length === 0) {
+			error = 'Vui lòng xác nhận bạn không phải là robot';
+			return;
+		}
 		isSubmitting = true;
-
 		if (!email || !password || !repassword || !first_name || !last_name) {
 			error = 'Vui lòng điền đầy đủ thông tin';
 			isSubmitting = false;
@@ -36,6 +39,10 @@
 		save(res);
 		goto('/');
 	};
+
+	onMount(() => {
+		console.log(grecaptcha);
+	});
 </script>
 
 <div class="flex min-h-[100vh]">
