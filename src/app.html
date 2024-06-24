@@ -3,11 +3,11 @@
 
 <head>
 	<script>
-		var onCaptchaLoad = () => {
+		setTimeout(() => {
 			grecaptcha.render('g-recaptcha', {
 				sitekey: '6LcWSvwpAAAAAFXUHMj88N3sn9E75Nnnb1s1rejt'
 			});
-		};
+		}, 1000)
 	</script>
 	<meta charset="utf-8" />
 	<title>Yeh</title>
@@ -22,7 +22,7 @@
 
 <body data-sveltekit-preload-data="hover" class="overflow-hidden">
 	<div style="display: contents">%sveltekit.body%</div>
-	<script src="https://www.google.com/recaptcha/api.js?onload=onCaptchaLoad&render=explicit" async defer></script>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 
 </html>
