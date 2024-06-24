@@ -15,7 +15,8 @@
 	let mounted = false;
 
 	const handleSubmit = async () => {
-		if (!grecaptcha && grecaptcha.getResponse().length === 0) {
+		console.log(grecaptcha);
+		if (!grecaptcha || grecaptcha.getResponse().length === 0) {
 			error = 'Vui lòng xác nhận bạn không phải là robot';
 			return;
 		}
