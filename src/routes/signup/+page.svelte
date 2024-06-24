@@ -39,6 +39,13 @@
 		save(res);
 		goto('/');
 	};
+
+	onMount(() => {
+		setTimeout(() => {
+			document.querySelector('body').appendChild(document.createElement('script')).src =
+				'https://www.google.com/recaptcha/api.js';
+		}, 1000);
+	});
 </script>
 
 <div class="flex min-h-[100vh]">
