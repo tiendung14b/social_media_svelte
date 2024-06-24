@@ -153,7 +153,11 @@
 								>
 							</div>
 						</div>
-						<div class="g-recaptcha" id="g-recaptcha"></div>
+						<div
+							class="g-recaptcha"
+							id="g-recaptcha"
+							data-sitekey="6LcWSvwpAAAAAFXUHMj88N3sn9E75Nnnb1s1rejt"
+						></div>
 						<div>
 							<button
 								on:click={handleSubmit}
